@@ -60,12 +60,11 @@ public class UserDaoJdbcImpl implements UserDao{
 	@Override
 	public List<User> getAllUsersSortedBy(String sort) throws IllegalArgumentException {
 		List<User> users = new ArrayList<User>();
-		if(sort != "firstName" && sort != "lastName" && sort !="email"){
+		if(sort.equalsIgnoreCase("firstName") || sort.equalsIgnoreCase("lastName") || sort.equalsIgnoreCase("email")){
 		String sql = "SELECT * FROM Users ORDER BY "+sort;
 		try (Connection connection = connectionFactory.getConnection();
 				PreparedStatement statement = connection.prepareStatement(sql)) {
-			//statement.setString(1, sort);
-			ResultSet result = statement.executeQuery();
+				ResultSet result = statement.executeQuery();
 
 			
 			while (result.next()) {
