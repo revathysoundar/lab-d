@@ -5,9 +5,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+
 
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -26,7 +27,8 @@ import co.grandcircus.movies.model.User;
 @Primary
 public class UserDaoJdbcImpl implements UserDao{
 	
-	//private static final Logger logger = (Logger) LoggerFactory.getLogger(UserDao.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
+
 	
 	@Autowired
 	JdbcConnectionFactory connectionFactory;
@@ -109,7 +111,7 @@ public class UserDaoJdbcImpl implements UserDao{
 
 	@Override
 	public User getUserByEmailAndPassword(String mail, String passwrd) {
-		String sql = "SELECT * FROM user WHERE email = ? AND password =?";
+		String sql = "SELECT * FROM Users WHERE email = ? AND password =?";
 		try (Connection connection = connectionFactory.getConnection();
 				PreparedStatement statement = connection.prepareStatement(sql)) {
 			statement.setString(1, mail);

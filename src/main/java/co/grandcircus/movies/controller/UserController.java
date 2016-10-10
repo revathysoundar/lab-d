@@ -30,6 +30,9 @@ public class UserController {
 	@Autowired
 	private UserDao userDao;
 	
+	
+	
+	
 	/**
 	 * List all users
 	 */
@@ -101,6 +104,33 @@ public class UserController {
 		logger.info("GET /users/create -> user-create.jsp");
 		return "user-create";
 	}
+	
+	/*
+	 * Display Login Page
+	 */
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String loginForm(Model model) {
+		model.addAttribute("user", new User());
+		
+		logger.info("GET /login -> login.jsp");
+		return "login";
+	}
+	
+	/*
+	 * Get User by email and password
+	 */
+	@RequestMapping(value = "/users/user", method = RequestMethod.POST)
+	public String displayUserByEmailPwd(
+										 @RequestParam(value="email") String email, 
+										 @RequestParam(value="password")String password, Model model) {
+		
+		model.addAttribute("user", userDao.getUserByEmailAndPassword(email,password));
+
+		
+		return "user";
+	}
+	
 	
 	/**
 	 * Save new user

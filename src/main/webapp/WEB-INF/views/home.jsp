@@ -17,5 +17,8 @@
 <a href="<c:url value="/movies"/>">Movies</a>
 <a href="<c:url value="/categories"/>">Categories</a>
 <a href="<c:url value="/users"/>">Users</a>
+<a href="<c:url value="/login"/>">Login</a>
+<a href="<c:url value="/weather"/>">Weather</a>
+<a href="<c:url value="/sun"/>">Sun API</a>
 </body>
 </html>

@@ -26,6 +26,7 @@ import co.grandcircus.movies.model.Movie;
 @Primary
 public class MovieDaoJdbcImpl implements MovieDao {
 	
+	
 	private static final Logger logger = LoggerFactory.getLogger(MovieDao.class);
 
 	@Autowired
